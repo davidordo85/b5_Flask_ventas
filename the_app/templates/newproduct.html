@@ -5,9 +5,31 @@
 {% block contenido %}
     <h1>Alta de producto</h1>
     <form class="u-full-width" action="/addproducto" method="post">
-        {{ form.tipo_producto(class="u-full-width") }}
-        {{ form.precio_unitario(class="u-full-width" )}}
-        {{ form.coste_unitario(class="u-full-width") }}
+        {{ form.hidden_tag() }}        
+        {{ form.tipo_producto(class="u-full-width", placeholder="Producto") }}
+        {% if form.tipo_producto.errors %}
+            {{ form.tipo_producto(class="u-full-width error", placeholder="Producto") }}
+            {% for error in form.tipo_producto.errors %}
+            <p class="error-msg">{{ error }}</p>
+            {% endfor %}
+            {% else %}
+            
+        {% endif %}                
+        {{ form.precio_unitario(class="u-full-width", placeholder="Precio" )}}
+        {% if form.tipo_producto.errors %}
+            {{ form.tipo_producto(class="u-full-width error", placeholder="Precio") }}
+            {% for error in form.precio_unitario.errors %}
+            <p class="error-msg">{{ error }}</p>
+            {% endfor %}
+        {% endif %}        
+        {{ form.coste_unitario(class="u-full-width", placeholder="Coste") }}
+        {% if form.tipo_producto.errors %}
+            {{ form.coste_unitario(class="u-full-width error", placeholder="Coste") }}
+            {% for error in form.coste_unitario.errors %}
+            <p class="error-msg">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+
         {{ form.submit(class="button-primary")}}
 
 
